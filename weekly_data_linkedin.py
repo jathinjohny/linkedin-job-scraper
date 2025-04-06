@@ -62,11 +62,7 @@ def scroll_job_list(scrollable_element):
 
 # Extract job details
 def extractDetails():
-    # jobList=driver.fing_element(By.CSS_SELECTOR, "#main > div > div.scaffold-layout__list-detail-inner.scaffold-layout__list-detail-inner--grow > div.scaffold-layout__list > div > ul")
-    # jobList=driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[1]/div/ul')
     
-
-
     job_cards = driver.find_elements(By.CLASS_NAME, "job-card-list__entity-lockup")
     print(f"Total jobs found on page: {len(job_cards)}")
     
@@ -83,22 +79,11 @@ def extractDetails():
 
             link = elem.get_attribute("href")
             job_title = elem.text
-            # # Create an ActionChains object
-            # actions = ActionChains(driver)
-
-            # # Perform a double-click on the element
-            # actions.double_click(elem).perform()
 
         except:
             job_title = "null"
             link = "null"
 
-       
-
-        # try:
-        #     job_title = job.find_element(By.CLASS_NAME, "base-search-card__title").text
-        # except:
-        #     job_title = "null"
 
         try:
             company_name = job.find_element(By.CLASS_NAME, 'artdeco-entity-lockup__subtitle').text
@@ -117,10 +102,6 @@ def extractDetails():
                 datetime_value = relative_time
         except:
             datetime_value = "null"
-        
-
-
-
 
         try:
             # Locate the button containing work mode and job type
@@ -238,7 +219,6 @@ if not os.path.exists(folder_name):
 
 # Generate a unique filename with the current date and time
 today = datetime.now().date() # Format the date as YYYY-MM-DD
-# current_time = datetime.now().strftime("%H:%M:%S")  # Add time to make the filename unique
 csv_filename = os.path.join(folder_name, f"linkedin_jobs_{today}.csv")
 
 # Open file in write mode ('w') to create a new file every time
