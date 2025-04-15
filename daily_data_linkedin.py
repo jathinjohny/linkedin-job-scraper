@@ -5,17 +5,13 @@ from selenium.webdriver.common.by import By
 import time
 import csv
 from selenium import webdriver
-# import undetected_chromedriver as uc
 from datetime import datetime, timedelta
 
 
-# Initialize the Chrome driver
-# driver = uc.Chrome()
 driver = webdriver.Chrome()
 
-
-def openBrowser(page,username,password):
-    driver.get(f"https://www.linkedin.com/jobs/search/?f_TPR=r604800&keywords=artificial%20intelligence%20ai&origin=JOB_SEARCH_PAGE_JOB_FILTER&refresh=true&sortBy=R&start={page}")
+def openBrowser(country,pages,username,password):
+    driver.get(f"https://www.linkedin.com/jobs/search/?f_E=2%2C3%2C4&f_JT=F&f_T=9%2C340%2C25206%2C30128%2C25190&f_TPR=r86400&keywords=artificial%20intelligence%20ai&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true&sortBy=R&location={country}&start={pages}")
     time.sleep(5)  # Wait for the page to load
 
     try:
@@ -194,24 +190,29 @@ import getpass
 username = input("Enter your LinkedIn username: ")
 password = getpass.getpass("Enter your LinkedIn password: ")
 
-# Number of pages to scrape
-number_of_pages = 40
+#list of top 10 countries where AI jobs are available
+countries = ["United States", "United Kingdom", "Canada", "India", "Japan", "China", "Germany", "Russia", "Australia", "France"]
 all_jobs = []
-
-for i in range(number_of_pages):
-    try:
-        page = i * 25
-        print(f"\n---------- Scraping page {i+1} ----------")
-        openBrowser(page,username,password)
-        jobs = extractDetails()
-        if(len(jobs) == 0):
+for country in countries:
+    print(f"Scraping jobs for {country}...")
+    # Number of pages to scrape
+    number_of_pages = 40
+    # Loop through the pages
+    for i in range(number_of_pages):
+        try:
+            page = i * 25
+            print(f"\n---------- Scraping page {i+1} ----------")
+            openBrowser(country,page,username,password)
+            jobs = extractDetails()
+            if(len(jobs) == 0):
+                break
+            all_jobs.extend(jobs)
+        except:
             break
-        all_jobs.extend(jobs)
-    except:
-        break
+
 
 # Ensure the folder exists
-folder_name = "weekly linkedin data"
+folder_name = "daily linkedin data"
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)  # Create the folder if it doesn't exist
 
