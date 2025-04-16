@@ -57,7 +57,7 @@ def clean_and_merge_csv_files(input_folder, output_file, removed_rows_file):
         print("No rows were removed.")
 
 # Define input folder, output file, and removed rows file
-input_folder = r"d:\DBS\PROGRAMMING FOR DATA ANALYSIS\project\weekly linkedin data"
+input_folder = r"d:\DBS\PROGRAMMING FOR DATA ANALYSIS\project\daily linkedin data"
 output_file = r"d:\DBS\PROGRAMMING FOR DATA ANALYSIS\project\final data\final_merged_data.csv"
 removed_rows_file = r"d:\DBS\PROGRAMMING FOR DATA ANALYSIS\project\final data\removed_rows.csv"
 
