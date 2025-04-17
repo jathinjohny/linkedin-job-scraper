@@ -191,13 +191,12 @@ username = input("Enter your LinkedIn username: ")
 password = getpass.getpass("Enter your LinkedIn password: ")
 
 #list of top 10 countries where AI jobs are available
-# countries = ["United States", "United Kingdom", "Canada", "India", "Japan", "China", "Germany", "Russia", "Australia", "France"]
-countries = ["United Kingdom"]
+countries = ["United States", "United Kingdom", "Canada", "India", "Japan", "China", "Germany", "Russia", "Australia", "France"]
 all_jobs = []
 for country in countries:
     print(f"Scraping jobs for {country}...")
     # Number of pages to scrape
-    number_of_pages = 1
+    number_of_pages = 40
     # Loop through the pages
     for i in range(number_of_pages):
         try:
