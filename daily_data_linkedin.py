@@ -92,7 +92,7 @@ def extractDetails():
         
         try:
             # Locate the <time> element
-            relative_time=driver.find_element(By.CSS_SELECTOR, "#main > div > div.scaffold-layout__list-detail-inner.scaffold-layout__list-detail-inner--grow > div.scaffold-layout__detail.overflow-x-hidden.jobs-search__job-details > div > div.jobs-search__job-details--container > div > div.job-view-layout.jobs-details > div:nth-child(1) > div > div:nth-child(1) > div > div.relative.job-details-jobs-unified-top-card__container--two-pane > div > div.job-details-jobs-unified-top-card__primary-description-container > div > span:nth-child(3)").text
+            relative_time=driver.find_element(By.CSS_SELECTOR, "#main > div > div.scaffold-layout__list-detail-inner.scaffold-layout__list-detail-inner--grow > div.scaffold-layout__detail.overflow-x-hidden.jobs-search__job-details > div > div.jobs-search__job-details--container > div > div.job-view-layout.jobs-details > div:nth-child(1) > div > div:nth-child(1) > div > div.relative.job-details-jobs-unified-top-card__container--two-pane > div > div.job-details-jobs-unified-top-card__primary-description-container > div > span > span.tvm__text.tvm__text--positive > strong > span").text
             datetime_value = convert_relative_date(relative_time)
             if(datetime_value == "null"):
                 datetime_value = relative_time
@@ -191,12 +191,13 @@ username = input("Enter your LinkedIn username: ")
 password = getpass.getpass("Enter your LinkedIn password: ")
 
 #list of top 10 countries where AI jobs are available
-countries = ["United States", "United Kingdom", "Canada", "India", "Japan", "China", "Germany", "Russia", "Australia", "France"]
+# countries = ["United States", "United Kingdom", "Canada", "India", "Japan", "China", "Germany", "Russia", "Australia", "France"]
+countries = ["United Kingdom"]
 all_jobs = []
 for country in countries:
     print(f"Scraping jobs for {country}...")
     # Number of pages to scrape
-    number_of_pages = 40
+    number_of_pages = 1
     # Loop through the pages
     for i in range(number_of_pages):
         try:
